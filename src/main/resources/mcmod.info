@@ -1,0 +1,16 @@
+[
+{
+    "modid": "particular",
+    "name": "Particular",
+    "description": "Particular enhances Minecraft's ambience with many hand-crafted visual effects, including cascading waterfalls, fireflies, cave dust, water splashes, and more. Client-side cosmetic mod.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/hunterhaunter/Particular-1.12.2",
+    "updateUrl": "",
+    "authorList": ["Leclowndu93150", "Chai the goat", "hunterhaunter (1.12.2 port)"],
+    "credits": "Leclowndu93150 and Chai the goat for the original Particular mod",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+}
+]

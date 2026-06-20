@@ -1,0 +1,25 @@
+# Gradle build output
+build/
+.gradle/
+out/
+bin/
+
+# Run / dev artifacts
+run/
+*.log
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+eclipse/
+
+# OS
+Thumbs.db
+.DS_Store
