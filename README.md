@@ -1,14 +1,14 @@
 <div align="center">
 
-  <h1>Particular (1.12.2 Forge)</h1>
+  <h1>Particular</h1>
 
   <p>Hand-crafted ambient particle effects for Minecraft 1.12.2.</p>
 
 </div>
 
 A 1.12.2 port of [Leclowndu93150's Particular](https://www.curseforge.com/minecraft/mc-mods/particular-reforged),
-originally written for newer Minecraft versions. The look and behavior of the original effects are preserved,
-rebuilt on the 1.12.2.
+originally written for newer Minecraft versions. The effects are rebuilt on the 1.12.2 client
+rendering pipeline. The mod is purely client-side and cosmetic.
 
 ## Features
 
