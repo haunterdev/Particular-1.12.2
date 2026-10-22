@@ -1,5 +1,6 @@
 package com.leclowndu93150.particular.proxy;
 
+import com.leclowndu93150.particular.client.CompatWarning;
 import com.leclowndu93150.particular.client.ParticleSprites;
 import com.leclowndu93150.particular.client.ParticularClientEvents;
 
@@ -17,5 +18,6 @@ public class ClientProxy extends CommonProxy {
     public void preInit() {
         ParticleSprites.init();
         ParticularClientEvents.register();
+        CompatWarning.register();
     }
 }

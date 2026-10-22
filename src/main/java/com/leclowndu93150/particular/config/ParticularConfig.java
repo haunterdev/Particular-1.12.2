@@ -28,6 +28,9 @@ public class ParticularConfig {
     @Config.Comment("Enable cave dust particles")
     public static boolean caveDust = true;
 
+    @Config.Comment("Enable falling leaf particles dropped from leaf blocks")
+    public static boolean fallingLeaves = true;
+
     @Config.Comment("Enable chest bubbles")
     public static boolean chestBubbles = true;
 
@@ -94,6 +97,38 @@ public class ParticularConfig {
     @Config.RangeDouble(min = 0.0, max = 1.0)
     @Config.Comment("Frequency modifier for tall flowers")
     public static double fireflyTallFlowersFrequency = 0.5;
+
+    @Config.Comment({"Extra blocks that also spawn fireflies (in addition to grass/flowers).",
+            "Use block registry names, e.g. minecraft:fern, biomesoplenty:flower_0.",
+            "These spawn at the flower frequency."})
+    public static String[] fireflyExtraBlocks = {};
+
+    @Config.Comment({"Biome whitelist for fireflies.",
+            "When empty, fireflies may spawn in any biome (subject to the temperature range).",
+            "When non-empty, fireflies ONLY spawn in these biomes (temperature range still applies).",
+            "Uses biome registry names, e.g. minecraft:forest, minecraft:plains."})
+    public static String[] fireflyBiomeWhitelist = {};
+
+    /* ---- Falling Leaf Settings ---- */
+
+    @Config.RangeInt(min = 1, max = Integer.MAX_VALUE)
+    @Config.Comment("Chance of spawning falling leaves (higher = less frequent)")
+    public static int fallingLeavesSpawnChance = 60;
+
+    @Config.Comment("Whether falling leaves create ripples when landing on water")
+    public static boolean fallingLeavesSpawnRipples = true;
+
+    @Config.Comment("Whether falling leaves lay flat on the ground when they land")
+    public static boolean fallingLeavesLayFlatOnGround = true;
+
+    @Config.Comment("Whether ground-laid leaves snap to right angles instead of random rotations")
+    public static boolean fallingLeavesLayFlatRightAngles = false;
+
+    /* ---- Compatibility ---- */
+
+    @Config.Comment({"Show a one-time chat notice when another mod that also adds leaf/foliage",
+            "particles is detected (e.g. Falling Leaves), warning of possible doubled-up leaves."})
+    public static boolean showCompatWarning = true;
 
     /* ---- Water Splash Settings ---- */
 

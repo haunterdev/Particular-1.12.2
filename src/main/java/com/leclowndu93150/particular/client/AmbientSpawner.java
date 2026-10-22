@@ -50,7 +50,7 @@ public final class AmbientSpawner {
         if (mc.player == null) {
             return;
         }
-        if (!ParticularConfig.fireflies && !ParticularConfig.caveDust) {
+        if (!ParticularConfig.fireflies && !ParticularConfig.caveDust && !ParticularConfig.fallingLeaves) {
             return;
         }
 
@@ -91,8 +91,13 @@ public final class AmbientSpawner {
         }
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
+        ResourceLocation id = LeafSpawner.idOf(block);
 
-        if (ParticularConfig.fireflies && tryFirefly(world, pos, block)) {
+        if (ParticularConfig.fallingLeaves && LeafSpawner.isLeafBlock(block, id)) {
+            LeafSpawner.trySpawn(world, pos.toImmutable(), state, block, id);
+            return;
+        }
+        if (ParticularConfig.fireflies && tryFirefly(world, pos, block, id)) {
             return;
         }
         if (ParticularConfig.caveDust) {
@@ -104,13 +109,14 @@ public final class AmbientSpawner {
      * Port of {@code InjectBlock.spawnParticles} firefly branch + {@code CommonClass.spawnFirefly}.
      * @return true if this block was a firefly source (so cave dust is skipped)
      */
-    private static boolean tryFirefly(World world, BlockPos pos, Block block) {
+    private static boolean tryFirefly(World world, BlockPos pos, Block block, ResourceLocation id) {
         double val = RANDOM.nextDouble();
         boolean source =
                 (block == Blocks.GRASS && val < ParticularConfig.fireflyGrassFrequency)
              || (block == Blocks.TALLGRASS && val < ParticularConfig.fireflyTallGrassFrequency)
              || (block instanceof BlockFlower && val < ParticularConfig.fireflyFlowersFrequency)
-             || (block instanceof BlockDoublePlant && val < ParticularConfig.fireflyTallFlowersFrequency);
+             || (block instanceof BlockDoublePlant && val < ParticularConfig.fireflyTallFlowersFrequency)
+             || (isFireflyExtraBlock(id) && val < ParticularConfig.fireflyFlowersFrequency);
         if (!source) {
             return false;
         }
@@ -118,11 +124,45 @@ public final class AmbientSpawner {
         return true;
     }
 
+    /** User-configurable extra firefly source blocks (registry names). */
+    private static boolean isFireflyExtraBlock(ResourceLocation id) {
+        String[] extra = ParticularConfig.fireflyExtraBlocks;
+        if (extra == null || extra.length == 0 || id == null) {
+            return false;
+        }
+        String key = id.toString();
+        for (String e : extra) {
+            if (key.equals(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Optional biome restrict-list: when non-empty, fireflies spawn ONLY in listed biomes. */
+    private static boolean biomeAllowsFireflies(Biome biome) {
+        String[] whitelist = ParticularConfig.fireflyBiomeWhitelist;
+        if (whitelist == null || whitelist.length == 0) {
+            return true; // empty = no restriction (default behaviour)
+        }
+        ResourceLocation id = ForgeRegistries.BIOMES.getKey(biome);
+        String key = id == null ? "" : id.toString();
+        for (String e : whitelist) {
+            if (key.equals(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static void spawnFirefly(World world, BlockPos pos) {
         if (RANDOM.nextDouble() > fireflyFrequency) {
             return;
         }
         Biome biome = world.getBiome(pos);
+        if (!biomeAllowsFireflies(biome)) {
+            return;
+        }
         float downfall = biome.getRainfall();
         if (world.isRaining() && !ParticularConfig.fireflyCanSpawnInRain) {
             return;
@@ -190,7 +230,7 @@ public final class AmbientSpawner {
         return true;
     }
 
-    static void add(net.minecraft.client.particle.Particle particle) {
+    public static void add(net.minecraft.client.particle.Particle particle) {
         Minecraft.getMinecraft().effectRenderer.addEffect(particle);
     }
 }

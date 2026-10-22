@@ -15,7 +15,8 @@ rendering pipeline. The mod is purely client-side and cosmetic.
 - **Water and lava splash crowns.** Entities falling into water or lava raise an animated splash crown sized to the entity, plus foam, rings, and droplets.
 - **Cascading waterfalls.** Falling water and lava edges spawn cascade and spray particles.
 - **Cave dust.** Faint drifting dust motes appear in dark caves below sea level, denser the deeper you go.
-- **Fireflies.** Fireflies rise from grass, flowers, and tall plants at night within the right temperature range.
+- **Falling leaves.** Leaf blocks drop leaves tinted by their texture and biome. They sway or spin as they fall, settle flat on the ground, and float with a ripple on water.
+- **Fireflies.** Fireflies rise from grass, flowers, and tall plants at night within the right temperature range. Extra spawn blocks and a biome whitelist are set in the config.
 - **Water ripples.** Rain and dripping water leave expanding ripples on the surface.
 - **Ender and chest bubbles.** Ambient bubble effects, including chest-open puffs.
 - **Extra touches.** Emissive lava drips, cake-eating crumbs, and more.

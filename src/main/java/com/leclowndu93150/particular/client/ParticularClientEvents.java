@@ -44,6 +44,7 @@ public final class ParticularClientEvents {
         }
         World world = mc.world;
         AmbientSpawner.tick(world);
+        RainRippleSpawner.tick(world);
         SplashTrigger.tick(world);
         CascadeTracker.tick(world);
         ChestBubbleTracker.tick(world);

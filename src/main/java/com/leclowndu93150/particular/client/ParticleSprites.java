@@ -29,6 +29,14 @@ public class ParticleSprites {
     private static final ResourceLocation[] WATER_SPLASH_RING_LOCS = new ResourceLocation[9];
     private static final ResourceLocation[] ENDER_BUBBLE_POP_LOCS = new ResourceLocation[5];
 
+    /* Leaf sprite-sets: one random frame is picked per spawned leaf (matches 1.20.1). */
+    private static final ResourceLocation[] OAK_LEAF_LOCS = new ResourceLocation[6];
+    private static final ResourceLocation[] BIRCH_LEAF_LOCS = new ResourceLocation[6];
+    private static final ResourceLocation[] SPRUCE_LEAF_LOCS = new ResourceLocation[2];
+    private static final ResourceLocation[] JUNGLE_LEAF_LOCS = new ResourceLocation[3];
+    private static final ResourceLocation[] ACACIA_LEAF_LOCS = new ResourceLocation[2];
+    private static final ResourceLocation[] MANGROVE_LEAF_LOCS = new ResourceLocation[6];
+
     private static ResourceLocation ENDER_BUBBLE_LOC;
     private static ResourceLocation FIREFLY_LOC;
     private static ResourceLocation CUBOID_LOC;
@@ -42,6 +50,13 @@ public class ParticleSprites {
     private static TextureAtlasSprite[] waterSplashFoamSprites;
     private static TextureAtlasSprite[] waterSplashRingSprites;
     private static TextureAtlasSprite[] enderBubblePopSprites;
+
+    private static TextureAtlasSprite[] oakLeafSprites;
+    private static TextureAtlasSprite[] birchLeafSprites;
+    private static TextureAtlasSprite[] spruceLeafSprites;
+    private static TextureAtlasSprite[] jungleLeafSprites;
+    private static TextureAtlasSprite[] acaciaLeafSprites;
+    private static TextureAtlasSprite[] mangroveLeafSprites;
 
     private static TextureAtlasSprite enderBubbleSprite;
     private static TextureAtlasSprite fireflySprite;
@@ -76,12 +91,25 @@ public class ParticleSprites {
         for (int i = 0; i < 5; i++) {
             ENDER_BUBBLE_POP_LOCS[i] = new ResourceLocation("particular", "particle/ender_bubble_pop_" + i);
         }
+        // leaf sprite-sets (filenames are 1-indexed in the source pack)
+        fillLeaf(OAK_LEAF_LOCS, "oak_leaf");
+        fillLeaf(BIRCH_LEAF_LOCS, "birch_leaf");
+        fillLeaf(SPRUCE_LEAF_LOCS, "spruce_leaf");
+        fillLeaf(JUNGLE_LEAF_LOCS, "jungle_leaf");
+        fillLeaf(ACACIA_LEAF_LOCS, "acacia_leaf");
+        fillLeaf(MANGROVE_LEAF_LOCS, "mangrove_leaf");
         // singles
         ENDER_BUBBLE_LOC = new ResourceLocation("particular", "particle/ender_bubble");
         FIREFLY_LOC = new ResourceLocation("particular", "particle/firefly");
         CUBOID_LOC = new ResourceLocation("particular", "particle/cuboid");
         GENERIC_0_LOC = new ResourceLocation("particular", "particle/generic_0");
         CAVE_DUST_LOC = new ResourceLocation("particular", "particle/cave_dust");
+    }
+
+    private static void fillLeaf(ResourceLocation[] locs, String name) {
+        for (int i = 0; i < locs.length; i++) {
+            locs[i] = new ResourceLocation("particular", "particle/" + name + "_" + (i + 1));
+        }
     }
 
     /**
@@ -105,6 +133,12 @@ public class ParticleSprites {
         for (ResourceLocation loc : WATER_SPLASH_FOAM_LOCS) map.registerSprite(loc);
         for (ResourceLocation loc : WATER_SPLASH_RING_LOCS) map.registerSprite(loc);
         for (ResourceLocation loc : ENDER_BUBBLE_POP_LOCS) map.registerSprite(loc);
+        for (ResourceLocation loc : OAK_LEAF_LOCS) map.registerSprite(loc);
+        for (ResourceLocation loc : BIRCH_LEAF_LOCS) map.registerSprite(loc);
+        for (ResourceLocation loc : SPRUCE_LEAF_LOCS) map.registerSprite(loc);
+        for (ResourceLocation loc : JUNGLE_LEAF_LOCS) map.registerSprite(loc);
+        for (ResourceLocation loc : ACACIA_LEAF_LOCS) map.registerSprite(loc);
+        for (ResourceLocation loc : MANGROVE_LEAF_LOCS) map.registerSprite(loc);
         map.registerSprite(ENDER_BUBBLE_LOC);
         map.registerSprite(FIREFLY_LOC);
         map.registerSprite(CUBOID_LOC);
@@ -127,6 +161,13 @@ public class ParticleSprites {
         waterSplashRingSprites = resolveArray(map, WATER_SPLASH_RING_LOCS);
         enderBubblePopSprites = resolveArray(map, ENDER_BUBBLE_POP_LOCS);
 
+        oakLeafSprites = resolveArray(map, OAK_LEAF_LOCS);
+        birchLeafSprites = resolveArray(map, BIRCH_LEAF_LOCS);
+        spruceLeafSprites = resolveArray(map, SPRUCE_LEAF_LOCS);
+        jungleLeafSprites = resolveArray(map, JUNGLE_LEAF_LOCS);
+        acaciaLeafSprites = resolveArray(map, ACACIA_LEAF_LOCS);
+        mangroveLeafSprites = resolveArray(map, MANGROVE_LEAF_LOCS);
+
         enderBubbleSprite = map.getAtlasSprite(ENDER_BUBBLE_LOC.toString());
         fireflySprite = map.getAtlasSprite(FIREFLY_LOC.toString());
         cuboidSprite = map.getAtlasSprite(CUBOID_LOC.toString());
@@ -134,6 +175,7 @@ public class ParticleSprites {
         caveDustSprite = map.getAtlasSprite(CAVE_DUST_LOC.toString());
 
         TextureCache.INST.clear();
+        LeafColorUtil.clearCache();
     }
 
     private static TextureAtlasSprite[] resolveArray(TextureMap map, ResourceLocation[] locs) {
@@ -205,4 +247,13 @@ public class ParticleSprites {
     public static TextureAtlasSprite waterfallSpray() {
         return generic0Sprite;
     }
+
+    /* ---- Leaf sprite-sets (one random frame chosen per spawned leaf) ---- */
+
+    public static TextureAtlasSprite[] oakLeaf()      { return oakLeafSprites; }
+    public static TextureAtlasSprite[] birchLeaf()    { return birchLeafSprites; }
+    public static TextureAtlasSprite[] spruceLeaf()   { return spruceLeafSprites; }
+    public static TextureAtlasSprite[] jungleLeaf()   { return jungleLeafSprites; }
+    public static TextureAtlasSprite[] acaciaLeaf()   { return acaciaLeafSprites; }
+    public static TextureAtlasSprite[] mangroveLeaf() { return mangroveLeafSprites; }
 }
