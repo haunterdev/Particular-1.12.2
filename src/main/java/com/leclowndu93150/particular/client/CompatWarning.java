@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * One-time startup notice mirroring the standalone Falling Leaves mod's own warning.
- * Particular now drops its own falling leaves, so running it alongside another mod that
+ * Particular drops its own falling leaves, so running it alongside another mod that
  * also spawns leaf / wind-blown foliage particles can visually double up the leaves.
  * When such a mod is detected, tell the player once (ever) how to turn one off.
  */

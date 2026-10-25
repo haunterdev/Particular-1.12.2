@@ -47,10 +47,9 @@ public class LeafParticle extends Particle {
     protected boolean expiring = false;
     /**
      * Latched once the leaf settles on ground or water. 1.12.2 {@code posY} is the AABB
-     * BOTTOM (not the centre), so a landed leaf rests with {@code posY == surface} and its
-     * flat quad would Z-fight the block/water it lies on. We freeze it here and lift it a
-     * hair clear of the surface, instead of letting gravity re-seat it every tick (which
-     * also ate the source's small landing lift).
+     * bottom (not the centre), so a landed leaf rests with {@code posY == surface} and its
+     * flat quad would Z-fight the block/water it lies on. It is frozen here and lifted a
+     * hair clear of the surface instead of letting gravity re-seat it every tick.
      */
     private boolean landed = false;
 
@@ -88,9 +87,9 @@ public class LeafParticle extends Particle {
 
     @Override
     public void onUpdate() {
-        // Settled: hold the lifted position EXACTLY. We must NOT call super.onUpdate() here:
-        // its move(0,0,0) re-seats posY to the AABB bottom (the surface) every tick, which
-        // would undo our anti-Z-fight lift and snap the leaf back coplanar with the ground.
+        // Settled: hold the lifted position and skip super.onUpdate(). Its move(0,0,0) re-seats
+        // posY to the AABB bottom (the surface) every tick, which would undo the anti-Z-fight
+        // lift and put the leaf back coplanar with the ground.
         if (this.landed) {
             this.prevPosX = this.posX;
             this.prevPosY = this.posY;
@@ -123,7 +122,7 @@ public class LeafParticle extends Particle {
         if (inWater) {
             if (this.particleGravity > 0.0f) {
                 // Float just clear of the water surface so the flat quad doesn't Z-fight the
-                // water plane (that coplanar overlap is what punched through the water fog).
+                // water plane.
                 this.posY = pos.getY() + 0.95;
                 spawnRippleIfEnabled();
             }
@@ -192,13 +191,13 @@ public class LeafParticle extends Particle {
     }
 
     /**
-     * Render WITHOUT writing the depth buffer. 1.12.2 {@code ParticleManager.renderParticles}
+     * Render without writing the depth buffer. 1.12.2 {@code ParticleManager.renderParticles}
      * buckets particles by {@code shouldDisableDepth()}: false → {@code depthMask(true)}.
-     * Translucent terrain (water) renders AFTER particles, so a depth-writing leaf (even once
+     * Translucent terrain (water) renders after particles, so a depth-writing leaf (even once
      * its alpha has faded to ~0) leaves a leaf-shaped depth value that fails the water's LEQUAL
-     * test, punching an invisible hole that shows straight through the water surface. Disabling
-     * the depth write (depth TEST still applies, so terrain still occludes the leaf) lets the
-     * water draw over the fading leaf normally, the way vanilla rain/smoke behave on water.
+     * test and shows as a hole in the water surface. With depth writes off (the depth test
+     * still applies, so terrain still occludes the leaf) the water draws over the fading leaf,
+     * the way vanilla rain and smoke behave on water.
      */
     @Override
     public boolean shouldDisableDepth() {
