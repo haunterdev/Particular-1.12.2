@@ -27,7 +27,12 @@ rendering pipeline. The mod is purely client-side and cosmetic.
 - Minecraft 1.12.2
 - Minecraft Forge for 1.12.2 (developed against 14.23.5.2860)
 
-No other dependencies. The mod is client-side only.
+The mod is client-side only.
+
+## Known issues
+
+- With Better Weather installed, both mods draw rain ripples on water. Set `rainRipples` to false in Particular's config to keep only Better Weather's.
+- Water ripples are very faint, and leaves that settle on water look like they sit under the surface. Minecraft 1.12.2 draws particles before water, so the water is drawn over them.
 
 ## License
 
