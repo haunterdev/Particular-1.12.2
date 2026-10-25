@@ -26,9 +26,10 @@ public class WaterRippleParticle extends Particle {
         super(world, x, y, z, 0.0, 0.0, 0.0);
         this.frames = frames;
         this.particleMaxAge = 7;
-        this.particleAlpha = 0.55f;
-        // Small surface ring (was 2.5 - droplet rings looked massive)
-        this.particleScale = 1.0f;
+        // 1.20.1 alpha 0.2 and quadSize 0.25. renderParticle uses particleScale as the quad's half
+        // size directly (the 1.20.1 corners are +-1 times quadSize), so it is 0.25 here, not x10.
+        this.particleAlpha = 0.2f;
+        this.particleScale = 0.25f;
         this.motionX = this.motionY = this.motionZ = 0.0;
         if (frames.length > 0) {
             this.setParticleTexture(frames[0]);
