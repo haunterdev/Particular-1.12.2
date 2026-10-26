@@ -1,6 +1,8 @@
 The wave textures in this folder (wave_0.png to wave_4.png) come from Coastal Waves by Verph
 (https://modrinth.com/mod/coastal-waves), released under the BSD 2-Clause License. They are
 used unchanged; Coastal Waves ships the same five frames as its small, medium and large sets.
+The author and licence below are the ones the Coastal Waves 1.6a jar names in its mods.toml
+(authors "Verph", license "BSD 2"); the jar gives no year.
 
 BSD 2-Clause License
 

@@ -48,4 +48,5 @@ Modified by xy: ported to 1.12.2 (2026), coastal waves added (2026-10-26).
   wave textures are Coastal Waves' own, used under the BSD 2-Clause License
   (`src/main/resources/assets/particular/textures/particle/waves/LICENSE-coastal-waves.txt`).
 - The wave logic is adapted from the Coastal Waves module of
-  [An Extra Touch](https://github.com/AngelicIndustries/AnExtraTouch) (LGPL-3.0).
+  [An Extra Touch](https://github.com/AngelicIndustries/AnExtraTouch) by Angelic Industries
+  (LGPL-3.0).

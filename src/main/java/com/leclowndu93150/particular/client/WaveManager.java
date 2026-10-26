@@ -39,7 +39,7 @@ import java.util.Random;
  * particles before water, so a wave made as a particle would sit under the surface.
  *
  * <p>from AnExtraTouch industries/angelic/anextratouch/handlers/client/effects/WaterWaveManager.java
- * (LGPL-3.0), the 1.7.10 backport of Verph's Coastal Waves: spawn budget, sampling, nearest-shore
+ * by Angelic Industries (LGPL-3.0), the 1.7.10 backport of Verph's Coastal Waves: spawn budget, sampling, nearest-shore
  * ring scan, size classes, wave motion and fade. Changes: 1.12.2 API, the landmass test written
  * out here, the crest frame driven by distance to the shore as Coastal Waves does, the surface
  * height and light taken the way 1.12.2 draws water, fog on, one draw per frame texture, and no

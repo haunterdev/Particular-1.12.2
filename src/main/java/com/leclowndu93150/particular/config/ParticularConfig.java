@@ -209,8 +209,9 @@ public class ParticularConfig {
     public static int waveSearchDistance = 14;
 
     @Config.RangeDouble(min = 0.0, max = 8.0)
-    @Config.Comment({"Waves started per spawn round. Fractions carry over, so 0.7 starts 7 waves every 10 rounds.",
-            "0 turns spawning off."})
+    @Config.Comment({"Waves tried per spawn round. The whole part is tried every round and the fraction is a chance",
+            "that also builds up over rounds without a wave, so 0.7 averages about 9 waves every 10 rounds.",
+            "A wave only starts where a shore is found. 0 turns spawning off."})
     public static double waveSpawnAmount = 0.7;
 
     @Config.RangeInt(min = 1, max = 1200)
