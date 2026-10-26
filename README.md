@@ -18,6 +18,7 @@ rendering pipeline. The mod is purely client-side and cosmetic.
 - **Falling leaves.** Leaf blocks drop leaves tinted by their texture and biome. They sway or spin as they fall, settle flat on the ground, and float with a ripple on water.
 - **Fireflies.** Fireflies rise from grass, flowers, and tall plants at night within the right temperature range. Extra spawn blocks and a biome whitelist are set in the config.
 - **Water ripples.** Rain and dripping water leave expanding ripples on the surface.
+- **Coastal waves.** Foam crests roll across ocean and beach water toward the nearest shore, break on the sand and fade. They need a real stretch of coast, so single posts and tiny islets are skipped. Spawn rate, distance, size, the most on screen at once and the biome list are set in the config.
 - **Ender and chest bubbles.** Ambient bubble effects, including chest-open puffs.
 - **Extra touches.** Emissive lava drips, cake-eating crumbs, and more.
 - **In-game config.** Every effect can be toggled and tuned live under Mods, Particular, Config.
@@ -38,3 +39,13 @@ The mod is client-side only.
 
 Licensed under the **GNU Lesser General Public License v3.0**, the same license as the original mod.
 See [LICENSE](LICENSE).
+
+Modified by xy: ported to 1.12.2 (2026), coastal waves added (2026-10-26).
+
+## Credits
+
+- Coastal waves follow [Coastal Waves](https://modrinth.com/mod/coastal-waves) by Verph, and the
+  wave textures are Coastal Waves' own, used under the BSD 2-Clause License
+  (`src/main/resources/assets/particular/textures/particle/waves/LICENSE-coastal-waves.txt`).
+- The wave logic is adapted from the Coastal Waves module of
+  [An Extra Touch](https://github.com/AngelicIndustries/AnExtraTouch) (LGPL-3.0).

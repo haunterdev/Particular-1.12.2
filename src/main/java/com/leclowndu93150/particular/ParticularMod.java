@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ParticularMod.MODID, name = "Particular", version = "1.5.0.0",
+@Mod(modid = ParticularMod.MODID, name = "Particular", version = "1.5.2.0",
         clientSideOnly = true, acceptableRemoteVersions = "*")
 public class ParticularMod {
     public static final String MODID = "particular";

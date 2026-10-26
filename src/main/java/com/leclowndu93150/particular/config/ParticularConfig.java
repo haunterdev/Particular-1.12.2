@@ -58,6 +58,9 @@ public class ParticularConfig {
     @Config.Comment("Enable lava splash particles when entities hit lava")
     public static boolean lavaSplash = true;
 
+    @Config.Comment("Enable coastal waves: foam crests that roll toward beaches and break on the shore")
+    public static boolean coastalWaves = true;
+
     /* ---- Firefly Settings ---- */
 
     @Config.RangeInt(min = 0, max = 23999)
@@ -198,6 +201,53 @@ public class ParticularConfig {
             "true = solid grey square (faithful to 1.20.1: vanilla draws a single opaque texel = a square; mip-stable)",
             "false = generic_0 single-pixel sprite (mip-averages to a faded round blur on the block atlas - not recommended)"})
     public static boolean caveDustSquareParticle = true;
+
+    /* ---- Coastal Wave Settings ---- */
+
+    @Config.RangeInt(min = 1, max = 64)
+    @Config.Comment("How far (in blocks) a wave looks for the nearest shore from where it starts")
+    public static int waveSearchDistance = 14;
+
+    @Config.RangeDouble(min = 0.0, max = 8.0)
+    @Config.Comment({"Waves started per spawn round. Fractions carry over, so 0.7 starts 7 waves every 10 rounds.",
+            "0 turns spawning off."})
+    public static double waveSpawnAmount = 0.7;
+
+    @Config.RangeInt(min = 1, max = 1200)
+    @Config.Comment("Ticks between spawn rounds (20 ticks = 1 second)")
+    public static int waveSpawnFrequency = 20;
+
+    @Config.RangeInt(min = 8, max = 256)
+    @Config.Comment("Furthest distance (in blocks) from you that waves start, capped at the render distance")
+    public static int waveSpawnDistance = 64;
+
+    @Config.RangeDouble(min = 0.0, max = 64.0)
+    @Config.Comment("Waves only start at least this many blocks from the shore")
+    public static double waveMinShoreDistance = 4.0;
+
+    @Config.RangeDouble(min = 1.0, max = 256.0)
+    @Config.Comment("Waves only start at most this many blocks from the shore")
+    public static double waveMaxShoreDistance = 48.0;
+
+    @Config.RangeDouble(min = 0.0, max = 360.0)
+    @Config.Comment("Waves only start inside this view angle in degrees (360 = all around you)")
+    public static double waveSpawnFovLimit = 140.0;
+
+    @Config.RangeDouble(min = 0.1, max = 4.0)
+    @Config.Comment("Size multiplier for waves")
+    public static double waveScale = 1.0;
+
+    @Config.RangeInt(min = 1, max = 512)
+    @Config.Comment("Most waves on screen at once")
+    public static int waveMaxCount = 96;
+
+    @Config.Comment({"Biomes that get waves. Entries are Forge biome dictionary types (OCEAN, BEACH, RIVER, ...)",
+            "or biome registry names (minecraft:river, biomesoplenty:lagoon)."})
+    public static String[] waveBiomes = {"OCEAN", "BEACH"};
+
+    @Config.Comment({"Biomes that never get waves, even when listed above.",
+            "Uses biome registry names, e.g. minecraft:frozen_ocean."})
+    public static String[] waveBiomeBlacklist = {};
 
     /* ---- Config Sync ---- */
 

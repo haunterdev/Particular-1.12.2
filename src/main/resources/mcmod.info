@@ -8,7 +8,7 @@
     "url": "https://github.com/haunterdev/Particular-1.12.2",
     "updateUrl": "",
     "authorList": ["Leclowndu93150", "Chai the goat", "xy (1.12.2 port)"],
-    "credits": "Leclowndu93150 and Chai the goat for the original Particular mod",
+    "credits": "Leclowndu93150 and Chai the goat for the original Particular mod; Verph for the Coastal Waves textures (BSD 2-Clause); An Extra Touch for the wave logic",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []

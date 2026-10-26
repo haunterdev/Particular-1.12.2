@@ -12,8 +12,10 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -48,6 +50,20 @@ public final class ParticularClientEvents {
         SplashTrigger.tick(world);
         CascadeTracker.tick(world);
         ChestBubbleTracker.tick(world);
+        WaveManager.tick(world);
+    }
+
+    /** Coastal waves draw here, after the translucent water layer. */
+    @SubscribeEvent
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
+        WaveManager.render(event.getPartialTicks());
+    }
+
+    @SubscribeEvent
+    public void onWorldUnload(WorldEvent.Unload event) {
+        if (event.getWorld().isRemote) {
+            WaveManager.clear();
+        }
     }
 
     /**
